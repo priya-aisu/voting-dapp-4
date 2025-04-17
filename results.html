@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="results.css">
+</head>
+<body>
+    <header>
+        <h1 id="results-title"></h1>
+    </header>
+    <main>
+        <div id="results-container"></div>
+        <button id="back-button">Back to Dashboard</button>
+    </main>
+    <script>
+        // Load Results from LocalStorage
+        const results = JSON.parse(localStorage.getItem('results'));
+        if (results) {
+            document.getElementById('results-title').textContent = results.type;
+
+            const container = document.getElementById('results-container');
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            // Table Header
+            const headers = Object.keys(results.data[0]);
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header.charAt(0).toUpperCase() + header.slice(1);
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            // Table Body
+            results.data.forEach(item => {
+                const row = document.createElement('tr');
+                Object.values(item).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            container.appendChild(table);
+
+           // Display Winner Announcement
+     if (results.winner) {
+    const winnerAnnouncement = document.createElement('div');
+    winnerAnnouncement.id = 'winner-announcement';
+    winnerAnnouncement.textContent = results.winner;
+
+    container.appendChild(winnerAnnouncement);
+}
+
+        } else {
+            document.getElementById('results-title').textContent = 'No Results Available';
+        }
+
+        // Back Button Logic
+        document.getElementById('back-button').addEventListener('click', () => {
+            window.location.href = './adminDashboard.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: url('indexbg.jpg') no-repeat center center/cover; /* Full-page background */
+    color: white;
+}
+
+/* Overlay for better readability */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Adds transparency */
+    width: 100%;
+    min-height: 100vh; /* Ensures it covers the full viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Sign-In Form */
+.login-page {
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency for the form background */
+    color: black;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+.login-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-page input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-page button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.login-page button:hover {
+    background-color: #ffaa00;
+}
+
+.login-page p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-page p a {
+    color: #ff9900;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-page p a:hover {
+    text-decoration: underline;
+}
+/* Home Button Icon */
+.home-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px; /* Icon size */
+    color: white; /* Icon color */
+    background: rgba(0, 0, 0, 0.6); /* Transparent background */
+    padding: 10px;
+    border-radius: 50%; /* Circular button */
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    
+}
+
+.home-button:hover {
+    background-color: rgba(255, 204, 0, 0.9); /* Yellow hover effect */
+    color: black; /* Change icon color on hover */
+}
+

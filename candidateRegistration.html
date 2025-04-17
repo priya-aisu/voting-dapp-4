@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Registration</title>
+    <link rel="stylesheet" href="candidateRegistration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Icons -->
+    <div class="top-bar">
+        <a href="admindashboard.html" class="nav-icon" title="Back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <a href="index.html" class="nav-icon" title="Home">
+            <i class="fas fa-house"></i>
+        </a>
+    </div>
+    <div class="container">
+        <h2>Candidate Registration</h2>
+        <form id="candidate-form">
+            <label for="party-name">Party Name:</label>
+            <input type="text" id="party-name" name="partyName" required>
+
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" maxlength="6" pattern="[0-9]{6}" required>
+
+            <label for="candidate-name">Candidate Name:</label>
+            <input type="text" id="candidate-name" name="candidateName" required>
+
+            <label for="candidate-id">Candidate ID:</label>
+            <input type="text" id="candidate-id" name="candidateId" required>
+
+            <label for="aadhar-number">Aadhar Number:</label>
+            <input type="text" id="aadhar-number" name="aadharNumber" maxlength="12" pattern="[0-9]{12}" required>
+
+            <label for="party-id">Party ID:</label> <!-- New field added -->
+            <input type="text" id="party-id" name="partyID" required>
+
+            <button type="submit">Register Candidate</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script type="module" src="candidateRegistration.js"></script> 
+
+</body>
+</html>

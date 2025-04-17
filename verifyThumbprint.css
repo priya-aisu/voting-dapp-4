@@ -1,0 +1,96 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 500px; /* Limit the form width */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #800000;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #800000;
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.5);
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #800000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #660000;
+  }
+  
+  .message {
+    margin-top: 20px;
+  }
+  
+  #status {
+    font-weight: bold;
+    color: #333;
+    white-space: pre-wrap;
+    font-family: monospace;
+  }
+  
+/* Back Button Styling */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #800000;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .back-btn i {
+    margin-right: 8px; /* Add spacing between the icon and text */
+  }
+  
+  .back-btn:hover {
+    color: #660000;
+  }
+    

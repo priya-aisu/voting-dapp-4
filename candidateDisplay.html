@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates</title>
+    <link rel="stylesheet" href="candidateDisplay.css">
+</head>
+<body>
+    <button id="logout-button" class="logout-button">Logout</button>
+    <h1>Candidates in Your Area</h1>
+
+    
+    
+    <div id="candidates-container"></div>
+
+    <!-- Modal for thumbprint upload -->
+    <div id="thumbprint-modal" style="display:none;">
+        <input type="file" id="thumbprint-input" accept="image/*" />
+        <button id="submit-thumbprint">Submit</button>
+        <button id="cancel-thumbprint">Cancel</button>
+    </div>
+
+    <!-- JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script type="module" src="candidateDisplay.js"></script> <!-- Handles candidate fetching and display -->
+    <script type="module" src="vote.js"></script> <!-- Handles voting logic -->
+</body>
+</html>

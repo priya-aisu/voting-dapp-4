@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fingerprint Verification</title>
+  <link rel="stylesheet" href="verifyThumbprint.css"> <!-- Assuming the CSS is saved as verify.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Back Button -->
+    <a href="signin.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back
+    </a>
+
+    <h1>Verify Voter's Fingerprint</h1>
+
+    <!-- Voter ID Input Section -->
+    <div class="form-group">
+      <label for="voterId">Voter ID:</label>
+      <input type="text" id="voterId" placeholder="Enter Voter ID">
+    </div>
+
+    <!-- Button for Verification -->
+    <div class="form-group">
+      <button onclick="verifyFingerprint()">Verify Fingerprint</button>
+    </div>
+
+    <!-- Message Area to Show Status -->
+    <div class="message">
+      <p>Status:</p>
+      <pre id="status">Waiting for fingerprint sensor...</pre>
+    </div>
+  </div>
+
+  <script>
+    const status = document.getElementById('status');
+
+    // Polling function for serial messages
+    function pollSerialMessages() {
+      fetch('http://localhost:3000/serial/messages')
+        .then(response => response.json())
+        .then(data => {
+          if (data.messages) {
+            status.textContent = data.messages.join('\n');
+          }
+        })
+        .catch(err => {
+          status.textContent += '\nPolling error: ' + err.message;
+        });
+    }
+
+    // Start polling every 1 second
+    setInterval(pollSerialMessages, 1000);
+
+    // Function to verify fingerprint
+    function verifyFingerprint() {
+      const voterId = document.getElementById('voterId').value;
+      if (!voterId.trim()) {
+        status.textContent += '\n⚠️ Voter ID is required!';
+        return;
+      }
+
+      status.textContent += `\n📤 Verifying fingerprint for Voter ID: ${voterId}`;
+
+      fetch('http://localhost:3000/fingerprint/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ voterId }) // Sends the Voter ID for verification
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          status.textContent += `\n✅ ${data.message}`;
+        } else {
+          status.textContent += '\n❌ Error during verification.';
+        }
+      })
+      .catch(err => {
+        status.textContent += '\n🚫 Error: ' + err.message;
+      });
+    }
+  </script>
+
+</body>
+</html>

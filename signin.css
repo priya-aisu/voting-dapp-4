@@ -1,0 +1,241 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+.background {
+    background-color: #800200f5;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Overlay container */
+.overlay {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sign-In Page Container */
+.signin-page {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.signin-page h2 {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Two Column Layout */
+.form-columns {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.left-column, .right-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Label and Input Styles */
+.signin-page label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+.signin-page input,
+.signin-page textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.signin-page input:focus,
+.signin-page textarea:focus {
+    border-color: #800000;
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.5);
+}
+
+/* Submit Button */
+.signin-page button {
+    margin-top: 30px;
+    padding: 12px;
+    width: 100%;
+    background-color: #800000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.signin-page button:hover {
+    background-color: #660000;
+}
+
+/* Home & Back Buttons */
+.home-button,
+.back-button {
+    position: absolute;
+    top: 20px;
+    font-size: 24px;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.home-button {
+    right: 20px;
+}
+
+.back-button {
+    left: 20px;
+}
+
+.home-button:hover,
+.back-button:hover {
+    background-color: yellow;
+}
+
+.home-button:hover i,
+.back-button:hover i {
+    color: black;
+}
+
+/* Toast Notification */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 16px;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+#toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Biometric Section */
+.biometric-section {
+    margin-top: 15px;
+}
+
+.biometric-section label {
+    display: inline-block;
+    font-weight: bold;
+    color: #555;
+    margin-right: 15px; /* Space between label and button */
+    vertical-align: middle;
+}
+
+.enroll-container {
+    display: flex;
+    align-items: center; /* Aligns button with the input */
+    gap: 10px; /* Adds space between input and button */
+}
+
+.enroll-container button {
+    padding: 8px 12px;
+    background-color: #800000; /* Maroon */
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.enroll-container button:hover {
+    background-color: #660000; /* Darker maroon on hover */
+}
+
+/* Back Button Styling */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #800000;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .back-btn i {
+    margin-right: 8px; /* Add spacing between the icon and text */
+  }
+  
+  .back-btn:hover {
+    color: #660000;
+  }
+  
+
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-columns {
+        flex-direction: column;
+    }
+
+    .left-column,
+    .right-column {
+        min-width: 100%;
+    }
+
+    .signin-page {
+        padding: 20px;
+    }
+}

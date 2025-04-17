@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fingerprint Enrollment</title>
+  <link rel="stylesheet" href="enrollThumbprint.css" />
+</head>
+<body>
+  <a href="signin.html" class="back-button">← Back</a>
+  <h1>Enroll Voter's Fingerprint</h1>
+
+  <div class="form-container">
+    <!-- Removed Voter ID input -->
+    <button onclick="enrollFingerprint()">Enroll Fingerprint</button>
+    <button id="submitBtn" disabled onclick="enableSignup()">Submit</button>
+  </div>
+
+  <div class="message">
+    <p>Status:</p>
+    <pre id="status">Waiting for fingerprint sensor...</pre>
+  </div>
+
+  <script>
+    const status = document.getElementById('status');
+    const submitBtn = document.getElementById('submitBtn');
+  
+    let fingerprintEnrolled = false;
+
+    function getVoterId() {
+      const voterId = localStorage.getItem('voterId');
+      if (!voterId) {
+        status.textContent = '⚠️ No Voter ID found in localStorage. Please register first.';
+        throw new Error('Voter ID not found.');
+      }
+      return voterId;
+    }
+
+    function pollSerialMessages() {
+      fetch('http://localhost:3000/serial/messages')
+        .then(response => response.json())
+        .then(data => {
+          if (data.messages) {
+            const statusText = data.messages.join('\n');
+            status.textContent = statusText;
+  
+            // Enable the submit button if "Enroll success" is detected
+            if (statusText.toUpperCase().includes("ENROLL_SUCCESS")) {
+              fingerprintEnrolled = true;
+              localStorage.setItem('enrollmentStatus', 'true');
+              submitBtn.disabled = false;
+            }
+          }
+        })
+        .catch(err => {
+          status.textContent += '\nPolling error: ' + err.message;
+        });
+    }
+  
+    setInterval(pollSerialMessages, 1000);
+  
+    function enrollFingerprint() {
+      let voterId;
+      try {
+        voterId = getVoterId();
+      } catch (e) {
+        return;
+      }
+
+      // 🔄 Clear existing messages on server before starting new enrollment
+      fetch('http://localhost:3000/serial/clear', {
+        method: 'POST',
+      })
+      .then(() => {
+        // Clear UI status and start fresh
+        status.textContent = `📤 Starting enrollment for Voter ID: ${voterId}`;
+  
+        return fetch('http://localhost:3000/fingerprint/enroll', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ voterId }),
+        });
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          status.textContent += `\n✅ ${data.message}`;
+        } else {
+          status.textContent += '\n❌ Error during enrollment.';
+        }
+      })
+      .catch(err => {
+        status.textContent += '\n🚫 Error: ' + err.message;
+      });
+    }
+  
+    function enableSignup() {
+      if (fingerprintEnrolled) {
+        alert('Fingerprint enrollment complete! You can now sign up.');
+        window.location.href = 'signin.html';
+      } else {
+        alert('Please complete fingerprint enrollment before submitting.');
+      }
+    }
+  </script>
+</body>
+</html>

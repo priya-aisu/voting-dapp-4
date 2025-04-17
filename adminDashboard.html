@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="adminDashboard.css">
+</head>
+<body>
+    <h1>Welcome, Admin</h1>
+    
+    <!-- Buttons -->
+    <button id="register-candidate-button">Register Candidate</button>
+    <button id="set-election-timing-button">Set Election Timings</button>
+    <button id="view-results-button">View Results</button>     
+    <button id="analytics-button">Analytics</button> <!-- New Analytics Button --> 
+    <button id="logout-button">Logout</button>
+
+    <!-- Pop-up for View Results -->
+    <div id="view-results-popup" class="popup" style="display:none;">
+        <h2>Select an Option</h2>
+        <button id="total-votes-button">Total Votes</button>
+        <button id="votes-by-party-and-pincode-button">Votes by Party and Pincode</button>
+        <button id="votes-by-pincode-button">Votes by Pincode</button>  
+        <button id="close-popup-button">Close</button>
+    </div>
+
+    <!-- Pop-up for Analytics -->
+    <div id="analytics-popup" class="popup" style="display:none;">
+        <h2>Select Analytics Type</h2>
+        <button id="time-interval-popup">Votes by Time Interval</button>
+        <button id="number-of-votes">Number of Votes</button>
+        <button id="gender-analysis-button">Gender Analysis</button>
+        <button id="close-analytics-popup">Close</button>
+    </div>
+
+    <div id="gender-analysis-chart-container" style="display:none;">
+        <h3>Gender-based Voting Analysis</h3>
+        <canvas id="genderVotesChart"></canvas>
+    </div>
+   <!-- Dialog Box for Votes by Party ID and Pincode -->
+<dialog id="party-pincode-time-dialog">
+    <h2>Enter Details for Vote Count</h2>
+
+    <label for="timeIntervalSelect">Select Time Interval:</label>
+    <select id="timeIntervalSelect" required>
+        <option value="6-10">6:00 AM - 10:00 AM</option>
+        <option value="10-14">10:00 AM - 2:00 PM</option>
+        <option value="14-18">2:00 PM - 6:00 PM</option>
+    </select>
+
+    <button id="submitPartyPincodeTime">Submit</button>
+    <button id="closeDialog">Close</button>
+</dialog>
+
+
+    <!-- Nested Analytics Pop-up for Number of Votes -->
+    <div id="number-of-votes-popup" class="popup" style="display:none;">
+        <h2>Select Sub-Option for Number of Votes</h2>
+        <button id="votes-by-pincode">Votes by Pincode</button>
+        <button id="close-number-of-votes-popup">Close</button>
+    </div>
+
+    <!-- Pincode Input Field (Displayed when Votes by Pincode is selected) -->
+    <div id="pincode-input" style="display:none;">
+        <h3>Enter Pincode(optional):</h3>
+        <input type="text" id="analytics-pincode" placeholder="Enter Pincode">
+        <button id="submit-analytics-button">Submit</button>
+    </div>
+
+    <div>
+        <canvas id="votesChart" width="400" height="200"></canvas>
+    </div>
+
+    <div id="votesTimeChart" class="table-container"></div>
+
+
+    <!-- Pop-up for Party ID and Pincode -->
+    <div id="party-pincode-popup" class="popup" style="display:none;">
+        <label for="partyId">Party ID:</label>
+        <input type="number" id="partyId" placeholder="Enter Party ID">
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" placeholder="Enter Pincode">
+        <button id="submit-party-pincode-button">Submit</button>
+        <button id="close-party-pincode-popup">Close</button>
+    </div>
+
+    <!-- Pop-up for Pincode Only -->
+    <div id="pincode-popup" class="popup" style="display:none;">
+        <label for="pincode-only">Pincode:</label>
+        <input type="text" id="pincode-only" placeholder="Enter Pincode">
+        <button id="submit-pincode-button">Submit</button>
+        <button id="close-pincode-popup">Close</button>
+    </div>
+
+    <!-- Pop-up for setting Election Timings -->
+    <div id="set-election-timing-popup" class="popup" style="display:none;">
+        <h2>Set Election Timings</h2>
+        <label for="start-time">Start Time:</label>
+        <input type="datetime-local" id="start-time">
+        <label for="end-time">End Time:</label>
+        <input type="datetime-local" id="end-time">
+        <button id="save-timings-button">Save Timings</button>
+        <button id="close-election-popup-button">Close</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script type="module" src="adminDashboard.js"></script>
+    <script type="module" src="analytics.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+ 
